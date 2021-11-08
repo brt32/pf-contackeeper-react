@@ -1,9 +1,14 @@
 import React, { useState, useContext, useEffect } from "react";
+import AlertContext from "../../context/alert/alertContext";
 import ContactContext from "../../context/contact/contactContext";
 
 const ContactForm = () => {
+  const alertContext = useContext(AlertContext);
   const contactContext = useContext(ContactContext);
-  const { addContact, updateContact, clearCurrent, current } = contactContext;
+  const { addContact, updateContact, clearCurrent, current, error } =
+    contactContext;
+
+  const { setAlert } = alertContext;
 
   useEffect(() => {
     if (current !== null) {
@@ -16,7 +21,7 @@ const ContactForm = () => {
         type: "personal",
       });
     }
-  }, [current]);
+  }, [current, error]);
 
   const [contact, setContact] = useState({
     name: "",
@@ -33,7 +38,11 @@ const ContactForm = () => {
   const onSubmit = (e) => {
     e.preventDefault();
     if (current === null) {
-      addContact(contact);
+      if (error === "Contact already exists") {
+        setAlert(error, "danger");
+      } else {
+        addContact(contact);
+      }
     } else {
       updateContact(contact);
     }
