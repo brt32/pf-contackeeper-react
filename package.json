@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "Contact Keeper MERN",
   "main": "server.js",
+  "engines": {
+    "node": ">=16.2.0"
+  },
   "scripts": {
     "start": "node server.js",
     "server": "nodemon server.js",
