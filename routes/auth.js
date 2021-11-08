@@ -2,7 +2,7 @@ const express = require("express");
 const { check, validationResult } = require("express-validator");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-const config = require("config");
+// const config = require("config");
 const auth = require("../middleware/auth");
 
 const User = require("../models/User");
@@ -59,7 +59,7 @@ router.post(
 
       jwt.sign(
         payload,
-        config.get("jwtSecret"),
+        process.env.JWT_SECRET,
         {
           expiresIn: "90d",
         },
