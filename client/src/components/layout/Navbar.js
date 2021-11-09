@@ -56,6 +56,14 @@ const Navbar = ({ title, icon }) => {
         <li>
           <Link to="/about">About</Link>
         </li>
+        <li>
+          <a
+            href="https://documenter.getpostman.com/view/8989457/UVC5F7aQ"
+            target="_blank"
+          >
+            API
+          </a>
+        </li>
       </ul>
     </div>
   );
